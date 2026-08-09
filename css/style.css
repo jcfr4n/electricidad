@@ -1,0 +1,656 @@
+/* ============================================================
+   Manual del Electricista Aprendiz — Hoja de Estilos
+   ============================================================ */
+
+/* --- Custom Properties ----------------------------------- */
+:root {
+  --sidebar-width: 270px;
+  --sidebar-bg: #141e28;
+  --sidebar-color: #b0bec5;
+  --sidebar-hover: #1e2d3d;
+  --sidebar-active: #2b5278;
+  --accent: #d4960b;
+  --accent-glow: rgba(212, 150, 11, 0.18);
+  --bg: #eef1f5;
+  --content-bg: #ffffff;
+  --text: #2c3e50;
+  --text-muted: #5a6c7d;
+  --heading: #141e28;
+  --border: #d5dce4;
+  --border-light: #e8ecf0;
+  --code-bg: #f0f3f7;
+  --code-color: #b64516;
+  --table-head-bg: #141e28;
+  --table-head-color: #ffffff;
+  --table-stripe: #f7f9fb;
+  --table-border: #d5dce4;
+  --warn-bg: #fef9e7;
+  --warn-border: #e6a817;
+  --warn-color: #7d6200;
+  --info-bg: #eaf2f8;
+  --info-border: #5b9bd5;
+  --info-color: #1a5276;
+  --danger-bg: #fdedec;
+  --danger-border: #e74c3c;
+  --danger-color: #922b21;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  --radius: 6px;
+  --radius-lg: 10px;
+  --transition: 180ms ease;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  --max-content-width: 860px;
+}
+
+/* --- Reset ----------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* --- Sidebar --------------------------------------------- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  color: var(--sidebar-color);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 16px rgba(0, 0, 0, 0.18);
+  transition: transform var(--transition);
+}
+
+.sidebar-header {
+  padding: 1.6rem 1.4rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-logo {
+  margin-bottom: 0.4rem;
+  color: var(--accent);
+}
+
+.sidebar-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+.sidebar-subtitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 2px;
+}
+
+/* --- Search ---------------------------------------------- */
+.search-box {
+  position: relative;
+  margin: 0.8rem 1rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #607080;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.55rem 0.8rem 0.55rem 2.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e0e8f0;
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.search-input::placeholder {
+  color: #607080;
+}
+
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* --- Chapter List ---------------------------------------- */
+.chapter-list {
+  list-style: none;
+  flex: 1;
+  padding: 0.5rem 0;
+  overflow-y: auto;
+}
+
+.chapter-list li {
+  margin: 0;
+}
+
+.chapter-list a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1.4rem;
+  color: var(--sidebar-color);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 450;
+  border-left: 3px solid transparent;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  cursor: pointer;
+}
+
+.chapter-list a:hover {
+  background: var(--sidebar-hover);
+  color: #ffffff;
+}
+
+.chapter-list a.active {
+  background: var(--sidebar-active);
+  color: #ffffff;
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+.chapter-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 1.6rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.chapter-list a.active .chapter-num {
+  color: var(--accent);
+}
+
+.chapter-list .separator {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 0.3rem 1rem;
+}
+
+.chapter-list .annex-item a {
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.chapter-list .annex-item a:hover {
+  opacity: 1;
+}
+
+/* --- Main Content ---------------------------------------- */
+.content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  padding: 0;
+  transition: margin-left var(--transition);
+}
+
+.content-inner {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+}
+
+/* --- Welcome Page ---------------------------------------- */
+.welcome {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+}
+
+.welcome-icon {
+  margin-bottom: 1.5rem;
+  color: var(--heading);
+}
+
+.welcome h1 {
+  font-size: 2rem;
+  color: var(--heading);
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.3px;
+}
+
+.welcome-subtitle {
+  font-size: 1.05rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.welcome-desc {
+  max-width: 560px;
+  margin: 0 auto 1.8rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.68;
+}
+
+.welcome-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.stat {
+  background: var(--bg);
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border-light);
+}
+
+.stat strong {
+  color: var(--heading);
+  font-size: 1.1rem;
+}
+
+/* --- Rendered Chapter Content ---------------------------- */
+.chapter-content h1 {
+  font-size: 1.8rem;
+  color: var(--heading);
+  margin-bottom: 0.3rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.chapter-content h2 {
+  font-size: 1.35rem;
+  color: var(--heading);
+  margin: 2.2rem 0 0.7rem;
+  padding-left: 0.6rem;
+  border-left: 4px solid var(--accent);
+}
+
+.chapter-content h3 {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.chapter-content h4 {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 1.2rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.chapter-content p {
+  margin-bottom: 0.9rem;
+  color: var(--text);
+}
+
+.chapter-content a {
+  color: #2471a3;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.chapter-content a:hover {
+  color: #1a5276;
+}
+
+/* --- Lists ----------------------------------------------- */
+.chapter-content ul,
+.chapter-content ol {
+  margin: 0.6rem 0 1rem 1.5rem;
+}
+
+.chapter-content li {
+  margin-bottom: 0.35rem;
+  padding-left: 0.2rem;
+}
+
+.chapter-content li > ul,
+.chapter-content li > ol {
+  margin: 0.3rem 0 0.3rem 1.2rem;
+}
+
+.chapter-content ul li::marker {
+  color: var(--accent);
+}
+
+.chapter-content ol li::marker {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* --- Tables ---------------------------------------------- */
+.chapter-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.88rem;
+  border: 1px solid var(--table-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.chapter-content thead {
+  background: var(--table-head-bg);
+  color: var(--table-head-color);
+}
+
+.chapter-content thead th {
+  padding: 0.6rem 0.8rem;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.chapter-content tbody td {
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid var(--table-border);
+  vertical-align: top;
+}
+
+.chapter-content tbody tr:nth-child(even) {
+  background: var(--table-stripe);
+}
+
+.chapter-content tbody tr:hover {
+  background: #eaf2f8;
+}
+
+/* --- Code ------------------------------------------------ */
+.chapter-content code {
+  background: var(--code-bg);
+  color: var(--code-color);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  border: 1px solid var(--border-light);
+}
+
+.chapter-content pre {
+  background: #1e2d3d;
+  color: #c8d6e5;
+  padding: 1.2rem;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  border: 1px solid #2d3f52;
+}
+
+.chapter-content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border: none;
+  font-size: inherit;
+}
+
+/* --- Horizontal Rules ------------------------------------ */
+.chapter-content hr {
+  border: none;
+  border-top: 2px solid var(--border-light);
+  margin: 2rem 0;
+}
+
+/* --- Blockquotes / Callouts ------------------------------ */
+.chapter-content blockquote {
+  border-left: 4px solid var(--accent);
+  background: var(--warn-bg);
+  margin: 1rem 0 1.5rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--warn-color);
+  font-size: 0.93rem;
+}
+
+.chapter-content blockquote p {
+  margin-bottom: 0.3rem;
+  color: inherit;
+}
+
+/* --- Strong / Emphasis ----------------------------------- */
+.chapter-content strong {
+  color: var(--heading);
+  font-weight: 650;
+}
+
+.chapter-content em {
+  color: var(--text-muted);
+}
+
+/* --- Not Found State ------------------------------------- */
+.chapter-content .not-found {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.chapter-content .not-found h2 {
+  border: none;
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Menu Toggle Button (Mobile) ------------------------- */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 200;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: var(--sidebar-bg);
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: all 220ms ease;
+}
+
+.menu-icon {
+  margin: 0 auto;
+  position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.menu-icon::before { top: -6px; }
+.menu-icon::after  { top: 6px; }
+
+/* --- Overlay (Mobile) ------------------------------------ */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 99;
+}
+
+/* --- Scroll to Top Button -------------------------------- */
+.scroll-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  background: var(--content-bg);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition), background var(--transition);
+  z-index: 50;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-top:hover {
+  background: var(--bg);
+  color: var(--heading);
+}
+
+/* --- Print Styles ---------------------------------------- */
+@media print {
+  .sidebar,
+  .menu-toggle,
+  .overlay,
+  .scroll-top,
+  .search-box {
+    display: none !important;
+  }
+
+  .content {
+    margin-left: 0 !important;
+  }
+
+  .content-inner {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .chapter-content table {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .chapter-content thead {
+    background: #e8e8e8;
+    color: #000;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* --- Responsive ------------------------------------------ */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .overlay.open {
+    display: block;
+  }
+
+  .content {
+    margin-left: 0;
+    padding-top: 3.2rem;
+  }
+
+  .content-inner {
+    padding: 1.2rem 1rem 3rem;
+  }
+
+  .chapter-content h1 {
+    font-size: 1.35rem;
+  }
+
+  .chapter-content h2 {
+    font-size: 1.15rem;
+    margin-top: 1.5rem;
+  }
+
+  .chapter-content table {
+    font-size: 0.78rem;
+    display: block;
+    overflow-x: auto;
+  }
+
+  .welcome h1 {
+    font-size: 1.45rem;
+  }
+
+  .welcome-stats {
+    gap: 0.6rem;
+  }
+
+  .stat {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-inner {
+    padding: 1rem 0.8rem 2.5rem;
+  }
+
+  .chapter-content pre {
+    padding: 0.8rem;
+    font-size: 0.78rem;
+  }
+}
