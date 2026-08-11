@@ -19,6 +19,7 @@ const CHAPTERS = [
   { file: 'chapter_13.md', num: '13', title: 'Averías típicas' },
   { file: 'chapter_14.md', num: '14', title: 'Tablas rápidas' },
   { file: 'chapter_15.md', num: '15', title: 'Tablas rápidas (continuación)' },
+  { file: 'chapter_16.md', num: '16', title: 'Calculadoras REBT' },
   { file: 'anexos.md',    num: '—',  title: 'Anexos (glosario, siglas, símbolos)' },
 ];
 
@@ -171,6 +172,9 @@ async function loadChapter(filename) {
     parsed = parsed.replace(/^\s*<h1>[^<]*<\/h1>\s*\n?/, '');
     const html = '<h1>' + escapeHtml(title) + '</h1>\n' + parsed;
     contentEl.innerHTML = html;
+    if (filename === 'chapter_16.md' && typeof initCalculators === 'function') {
+      initCalculators();
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } catch (err) {
     currentFile = null;

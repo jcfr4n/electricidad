@@ -654,3 +654,191 @@ body {
     font-size: 0.78rem;
   }
 }
+
+/* --- Calculadoras REBT (Capítulo 16) ---------------------- */
+.calc {
+  margin: 1rem 0 1.5rem;
+}
+
+.calc-form {
+  background: var(--content-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.2rem 1.4rem;
+  box-shadow: var(--shadow);
+}
+
+.calc-form label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text);
+  flex-wrap: wrap;
+}
+
+.calc-form input[type="number"] {
+  width: 120px;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--text);
+  background: #f0f4ff;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.calc-form input[type="number"]:focus {
+  border-color: var(--info-border);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.calc-form select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  font-family: inherit;
+  color: var(--text);
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.calc-form select:focus {
+  border-color: var(--info-border);
+}
+
+.calc-form small {
+  display: block;
+  width: 100%;
+  margin-top: 0.3rem;
+}
+
+.calc-form--row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: flex-end;
+}
+
+.calc-form--row label {
+  flex: 0 0 auto;
+  margin-bottom: 0;
+}
+
+.calc-output {
+  margin-top: 0.7rem;
+  padding: 0.5rem 0.8rem;
+  background: var(--bg);
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--heading);
+  border-left: 4px solid var(--info-border);
+  width: 100%;
+}
+
+.calc-form--row .calc-output {
+  margin-top: 0.4rem;
+  flex: 1 0 100%;
+}
+
+.calc-result {
+  color: var(--heading);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+}
+
+.calc-unit {
+  color: var(--text-muted);
+  font-weight: 450;
+  font-size: 0.85rem;
+}
+
+.calc-ok {
+  color: #1e7e34;
+  font-weight: 650;
+}
+
+.calc-warn {
+  color: #c0392b;
+  font-weight: 650;
+}
+
+/* Download button */
+.calc-download {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: var(--bg);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  margin: 1rem 0;
+}
+
+.calc-download p {
+  margin-bottom: 0.9rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.8rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 650;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  box-shadow: 0 2px 8px rgba(212, 150, 11, 0.3);
+}
+
+.btn-download:hover {
+  background: #c4890a;
+  transform: translateY(-1px);
+}
+
+.btn-download:disabled {
+  opacity: 0.7;
+  cursor: wait;
+  transform: none;
+}
+
+.calc-download-files {
+  margin-top: 0.7rem !important;
+  font-size: 0.8rem !important;
+}
+
+.calc-download-files code {
+  font-size: 0.82em;
+}
+
+@media (max-width: 768px) {
+  .calc-form {
+    padding: 0.9rem 1rem;
+  }
+
+  .calc-form label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+
+  .calc-form input[type="number"] {
+    width: 100%;
+  }
+
+  .calc-form select {
+    width: 100%;
+  }
+}
